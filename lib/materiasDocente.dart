@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 import 'MyApp2.dart';
+import 'qrmaterias.dart';
 
 class materiasDocentes extends StatefulWidget {
   final String idDocente;
@@ -51,12 +52,14 @@ class _materiasDocentesState extends State<materiasDocentes> {
       body: ListView.builder(
         itemCount: userData == null ? 0 : userData.length,
         itemBuilder: (BuildContext contex, int index) {
+          String inFo;
           return Card(
             margin: EdgeInsets.all(8.0),
             child: new InkWell(
               onTap: () {
+                inFo=userData[index]["nombre_materia"]+"\n"+userData[index]["codigo"];
                 Navigator.push(context,
-                    new MaterialPageRoute(builder: (context) => new MyApp2()));
+                    new MaterialPageRoute(builder: (context) => new QrMaterias(infoMaterias: inFo)));
               },
               splashColor: Colors.red,
               child: Row(

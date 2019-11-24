@@ -24,6 +24,7 @@ dependencies:
 
   simple_permissions: "^0.1.2"
   barcode_scan: "^0.0.4"
+  qr_flutter: ^2.0.0
 
 dev_dependencies:
   flutter_test:
