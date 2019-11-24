@@ -6,6 +6,7 @@ import 'materias.dart';
 import 'profile.dart';
 import 'main.dart';
 import 'crearMaterias.dart';
+import 'materiasDocente.dart';
 
 class MyApp extends StatefulWidget {
   final Map correo;
@@ -17,6 +18,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   List userData;
+  bool ver;
   @override
   void initState() {
     // TODO: implement initState
@@ -24,6 +26,11 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       userData = widget.correo["data"];
     });
+    if (userData[0]["id_tipo_usuario"] == "3") {
+      ver = true;
+    } else {
+      ver = false;
+    }
   }
 
   @override
@@ -65,13 +72,9 @@ class _MyAppState extends State<MyApp> {
             new ListTile(
               leading: Icon(Icons.lock),
               title: new Text("Cerrar Sesión"),
-              onTap: (){
-                 Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (context) => new Login(
-                              
-                            )));
+              onTap: () {
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (context) => new Login()));
               },
             ),
           ],
@@ -130,11 +133,7 @@ class _MyAppState extends State<MyApp> {
             ),
             new Card(
               child: new InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      new MaterialPageRoute(builder: (context) => new CrearMaterias()));
-
-                },
+                onTap: () {},
                 splashColor: Colors.red,
                 child: new Center(
                   child: new Column(
@@ -167,7 +166,61 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
               ),
-            )
+            ),
+            new Visibility(
+              visible: ver,
+              child: new Card(
+                margin: EdgeInsets.all(8.0),
+                child: new InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new materiasDocentes(idDocente:"${userData[0]["id_usuario"].toString()}")));
+                  },
+                  splashColor: Colors.red,
+                  child: new Center(
+                    child: new Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        new Icon(Icons.library_books, size: 70.0),
+                        Text(
+                          "Mis Materias",
+                          style: new TextStyle(fontSize: 17.0),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            new Visibility(
+              visible: ver,
+              child: new Card(
+                margin: EdgeInsets.all(8.0),
+                child: new InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new CrearMaterias()));
+                  },
+                  splashColor: Colors.red,
+                  child: new Center(
+                    child: new Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        new Icon(Icons.book, size: 70.0),
+                        Text(
+                          "Crear Materias",
+                          style: new TextStyle(fontSize: 17.0),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

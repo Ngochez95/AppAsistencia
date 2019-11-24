@@ -208,6 +208,10 @@ class _CrearMaterias extends State<CrearMaterias> {
     );
 
     return new Scaffold(
+      appBar: new AppBar(
+       title: new Text("Creación de materias"),
+       backgroundColor: Colors.redAccent,
+      ),
       body: new Center(
         child: new Form(
           key: formKey,
