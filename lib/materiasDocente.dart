@@ -19,7 +19,7 @@ class _materiasDocentesState extends State<materiasDocentes> {
 
   Future getData() async {
     http.Response response =
-        await http.get("http://35.232.215.93/apis/materias.php");
+        await http.get("http://35.232.215.93/apis/materias.php?docente=${widget.idDocente}");
     data = json.decode(response.body);
     setState(() {
       userData = data["data"];
