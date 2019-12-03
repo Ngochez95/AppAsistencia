@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'MyApp2.dart';
 
 class list extends StatefulWidget {
+final String Usuario;
+list({this.Usuario});
   @override
   _listState createState() => new _listState();
  }
@@ -14,7 +16,7 @@ List userData;
 
 
   Future getData() async{
-    http.Response response= await http.get("http://35.232.215.93/apis/user.php");
+    http.Response response= await http.get("http://35.232.215.93/apis/materias.php?user=${widget.Usuario}");
     data = json.decode(response.body);
     setState(() {
       userData = data["data"];
@@ -43,16 +45,18 @@ List userData;
          child: new InkWell(
            onTap: (){
              Navigator.push(context,
-              new MaterialPageRoute(builder: (context) => new MyApp2()));
+              new MaterialPageRoute(builder: (context) => new MyApp2(user: userData[index]["codigo"],)));
            },
            splashColor: Colors.red,
            child: Row(
            children: <Widget>[
              CircleAvatar(
+               maxRadius: 30,
                backgroundColor: Colors.redAccent,
-               backgroundImage: NetworkImage(userData[index]["user"]),
+               child: new Text(userData[index]["codigo"].toString()),
+               backgroundImage: NetworkImage(userData[index]["nombre_materia"]),
              ),
-             Text( "${userData[index]["user"]}" ),
+             Text("  "+ "${userData[index]["nombre_materia"]}" ),
            ],
          ),
          ),

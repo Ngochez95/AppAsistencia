@@ -6,6 +6,8 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:simple_permissions/simple_permissions.dart';
 
 class MyApp2 extends StatefulWidget {
+  final String user;
+  MyApp2({this.user});
   @override
   _MyApp2State createState() => new _MyApp2State();
 }
@@ -63,6 +65,10 @@ class _MyApp2State extends State<MyApp2> {
         return;
       }
       setState(() => _reader = reader);
+      if (reader==widget.user) {
+        //Aqui debe de ir el post
+        _reader="coincidencia";
+      }
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
         requestPermission();

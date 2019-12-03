@@ -114,7 +114,7 @@ class _MyAppState extends State<MyApp> {
               child: new InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      new MaterialPageRoute(builder: (context) => new list()));
+                      new MaterialPageRoute(builder: (context) => new list(Usuario: userData[0]["id_usuario"],)));
                 },
                 splashColor: Colors.red,
                 child: new Center(

@@ -57,7 +57,7 @@ class _materiasDocentesState extends State<materiasDocentes> {
             margin: EdgeInsets.all(8.0),
             child: new InkWell(
               onTap: () {
-                inFo=userData[index]["nombre_materia"]+"\n"+userData[index]["codigo"];
+                inFo=userData[index]["codigo"];
                 Navigator.push(context,
                     new MaterialPageRoute(builder: (context) => new QrMaterias(infoMaterias: inFo)));
               },
