@@ -45,7 +45,7 @@ List userData;
          child: new InkWell(
            onTap: (){
              Navigator.push(context,
-              new MaterialPageRoute(builder: (context) => new MyApp2(user: userData[index]["codigo"],)));
+              new MaterialPageRoute(builder: (context) => new MyApp2(user: userData[index]["codigo"], idMateria: userData[index]["id_materia"], idUsuario: widget.Usuario,)));
            },
            splashColor: Colors.red,
            child: Row(
